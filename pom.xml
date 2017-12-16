@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ua.com.shocell</groupId>
+    <artifactId>Shocell</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>ShoCellWebPortal</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <mysql-jdbc.version>5.1.39</mysql-jdbc.version>
+        <hibernate-core.version>5.2.12.Final</hibernate-core.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- driver for connection to MYSql database -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-jdbc.version}</version>
+        </dependency>
+        <!-- END driver for connection to MYSql database -->
+
+        <!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate-core.version}</version>
+        </dependency>
+        <!-- END Hibernate -->
+
+    </dependencies>
+
+
+</project>

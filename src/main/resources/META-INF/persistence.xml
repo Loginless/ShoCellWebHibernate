@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                          http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+<persistence-unit name="org.hibernate.tutorial.jpa">
+        <properties>
+            <!-- Database connection settings -->
+            <!--<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>-->
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/shocell"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="root"/>
+
+            <!-- JDBC connection pool (use the built-in) -->
+            <property name="hibernate.connection.pool_size" value="1"/>
+
+            <!-- SQL dialect -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
+
+            <!-- Drop and re-create the database schema on startup create, create-drop, update) -->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+
+            <!-- Hibernate 2nd level cache properties -->
+            <property name="hibernate.cache.use_second_level_cache" value="false"/>
+
+            <!-- Echo all executed SQL to stdout -->
+            <property name="hibernate.show_sql" value="true" />
+
+        </properties>
+    </persistence-unit>
+</persistence>
