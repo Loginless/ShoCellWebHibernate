@@ -18,13 +18,13 @@
             <property name="hibernate.connection.password" value="root"/>
 
             <!-- JDBC connection pool (use the built-in) -->
-            <property name="hibernate.connection.pool_size" value="1"/>
+            <property name="hibernate.connection.pool_size" value="2"/>
 
             <!-- SQL dialect -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
 
             <!-- Drop and re-create the database schema on startup create, create-drop, update) -->
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
 
             <!-- Hibernate 2nd level cache properties -->
             <property name="hibernate.cache.use_second_level_cache" value="false"/>

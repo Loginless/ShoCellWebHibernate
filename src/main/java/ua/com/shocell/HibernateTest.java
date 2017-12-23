@@ -1,10 +1,12 @@
 package ua.com.shocell;
 
+import ua.com.shocell.DAO.GenericDAOImpl;
 import ua.com.shocell.configuration.HibernateUtil;
-import ua.com.shocell.models.WebPortalUser;
+import ua.com.shocell.models.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.sql.SQLException;
 
 public class HibernateTest {
     public static void main(String[] args) {
@@ -12,15 +14,83 @@ public class HibernateTest {
         EntityManagerFactory entityManagerFactory = HibernateUtil.getInstance().getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        WebPortalUser admin = new WebPortalUser();
-        admin.setUserID(1);
-        admin.setLogin("admin");
-        admin.setEmail("postbox78@yanex.ru");
-        admin.setPassword("admin");
 
-        entityManager.getTransaction().begin();
-        entityManager.persist(admin);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        //Admin user
+        WebPortalUser admin = new WebPortalUser();
+        admin.setLogin("admin");
+        admin.setEmail("admin@yanex.ru");
+        admin.setPassword("admin");
+        admin.setEnabled(true);
+
+        //User user
+        WebPortalUser user1 = new WebPortalUser();
+        user1.setLogin("test1");
+        user1.setEmail("test1@yanex.ru");
+        user1.setPassword("user1");
+        user1.setEnabled(true);
+
+        WebPortalUser user2 = new WebPortalUser();
+        user2.setLogin("test2");
+        user2.setEmail("test2@yanex.ru");
+        user2.setPassword("user");
+        user2.setEnabled(true);
+
+        WebPortalUserRole roleAdmin = new WebPortalUserRole();
+        roleAdmin.setRole_name("ADMIN");
+
+        WebPortalUserRole roleUser = new WebPortalUserRole();
+        roleUser.setRole_name("USER");
+
+        //Abonents
+
+        PrepaidAbonents prepaidAbonent1 = new PrepaidAbonents();
+        prepaidAbonent1.setMobileNumber("+38023321123");
+        prepaidAbonent1.setMobileNumberActiveStatus(true);
+        prepaidAbonent1.setAbonentFirstName("Andrey");
+        prepaidAbonent1.setAbonentLastName("Shokotko");
+        ContractAbonent contractAbonent1 = new ContractAbonent();
+        contractAbonent1.setCompanyName("BICS");
+        contractAbonent1.setContractID(1);
+        contractAbonent1.setPassportNumber("ID867231");
+        contractAbonent1.setMobileNumber("+38042323313");
+        contractAbonent1.setMobileNumberActiveStatus(true);
+
+        //Web users and roles connection
+        roleAdmin.getWebPortalUsers().add(admin);
+//        admin.setWebPortalUserRole(roleAdmin);
+
+//        user.setWebPortalUserRole(roleUser);
+//        roleUser.getWebPortalUsers().add(user);
+
+        //Transactions
+//        entityManager.getTransaction().begin();
+//        entityManager.persist(roleAdmin);
+//        entityManager.persist(roleUser);
+//        entityManager.persist(admin);
+//        entityManager.persist(user);
+//        entityManager.persist(prepaidAbonent1);
+//        entityManager.persist(contractAbonent1);
+//        entityManager.createQuery("from abonents");
+//        entityManager.getTransaction().commit();
+//        entityManager.close();
+//
+//        WebPortalUser test = null;
+
+//        entityManager.getTransaction().begin();
+//        Query query = entityManager.createQuery("from WebPortalUser");
+//
+//        List<WebPortalUser> queryResult = query.getResultList();
+//        System.out.println(queryResult.get(0));
+//
+//        entityManager.getTransaction().commit();
+//        entityManager.close();
+
+        GenericDAOImpl genericDAO = new GenericDAOImpl();
+        try {
+            genericDAO.createBatch(user1, user2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
