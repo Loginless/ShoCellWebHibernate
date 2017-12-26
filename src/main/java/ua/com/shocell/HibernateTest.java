@@ -1,18 +1,22 @@
 package ua.com.shocell;
 
 import ua.com.shocell.DAO.GenericDAOImpl;
+import ua.com.shocell.DAO.WebPortalUsedDAOImpl;
 import ua.com.shocell.configuration.HibernateUtil;
 import ua.com.shocell.models.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HibernateTest {
     public static void main(String[] args) {
 
         EntityManagerFactory entityManagerFactory = HibernateUtil.getInstance().getEntityManagerFactory();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+
 
 
         //Admin user
@@ -73,6 +77,34 @@ public class HibernateTest {
 //        entityManager.createQuery("from abonents");
 //        entityManager.getTransaction().commit();
 //        entityManager.close();
+
+//        WebPortalUser test1;
+//        WebPortalUser test2;
+//        entityManager.getTransaction().begin();
+//        test1 = entityManager.find(WebPortalUser.class,10);
+//        System.out.println(test1);
+////        test1.setEnabled(true);
+////        entityManager.merge(test1);
+////        test2 = entityManager.find(WebPortalUser.class,10);
+////        System.out.println(test2);
+//        System.out.println(test1);
+//        entityManager.getTransaction().commit();
+//        entityManager.close();
+//
+//        EntityManager entityManager2 = entityManagerFactory.createEntityManager();
+//
+//        entityManager2.getTransaction().begin();
+//        test2 = entityManager.find(WebPortalUser.class,10);
+////        test1.setEnabled(true);
+////        entityManager.merge(test1);
+////        test2 = entityManager.find(WebPortalUser.class,10);
+////        System.out.println(test2);
+//
+//        entityManager2.getTransaction().commit();
+//        entityManager2.close();
+//        System.out.println(test2);
+//        HibernateUtil.getInstance().closeEntityManagerFactory();
+
 //
 //        WebPortalUser test = null;
 
@@ -85,12 +117,27 @@ public class HibernateTest {
 //        entityManager.getTransaction().commit();
 //        entityManager.close();
 
-        GenericDAOImpl genericDAO = new GenericDAOImpl();
-        try {
-            genericDAO.createBatch(user1, user2);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        WebPortalUsedDAOImpl webPortalUsedDAO = new WebPortalUsedDAOImpl();
+//        List<WebPortalUser> testUser1 = new ArrayList<WebPortalUser>();
+//        List<WebPortalUser> testUser2 = new ArrayList<WebPortalUser>();
+////
+//        testUser1 = webPortalUsedDAO.findByLogin("admin");
+//
+//        testUser2 = webPortalUsedDAO.findByLogin("admin");
+//
+//        System.out.println(testUser1);
+//        System.out.println(testUser2);
+
+        List<WebPortalUser> test1;
+        List<WebPortalUser> test2;
+
+        WebPortalUsedDAOImpl webPortalUsedDAO = new WebPortalUsedDAOImpl();
+
+        test1 = webPortalUsedDAO.findByLogin("admin");
+        test2 = webPortalUsedDAO.findByLogin("admin");
+
+        HibernateUtil.getInstance().closeEntityManagerFactory();
+
 
     }
 }
