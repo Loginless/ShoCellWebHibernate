@@ -1,16 +1,24 @@
 package ua.com.shocell.models;
 
+import org.apache.logging.log4j.*;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 @Table(name = "ABONENTS")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DiscriminatorColumn(name = "ABONENT_TYPE",
                     discriminatorType = DiscriminatorType.STRING)
 public abstract class Abonent {
+
+    private static final Logger LOGGER = LogManager.getLogger("ua.com.shoCell.models");
 
     @Id
     @GeneratedValue
@@ -26,7 +34,7 @@ public abstract class Abonent {
     @Column(name = "MOBILE_NUMBER_ACTIVE_STATUS", nullable = false)
     private boolean mobileNumberActiveStatus;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "WEBPORTAL_USER_ID")
     private WebPortalUser webPortalUserID;
 
@@ -34,6 +42,7 @@ public abstract class Abonent {
     private Collection<Payment> paymentsList = new ArrayList<Payment>();
 
     public Abonent() {
+        LOGGER.info("Abonent is created");
     }
 
     public int getAbonentID() {

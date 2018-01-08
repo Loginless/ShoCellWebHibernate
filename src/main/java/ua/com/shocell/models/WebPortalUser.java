@@ -1,12 +1,21 @@
 package ua.com.shocell.models;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 @Table(name = "WEBPORTAL_USERS")
 public class WebPortalUser {
+
+    private static final Logger LOGGER = LogManager.getLogger("ua.com.shoCell.models");
+
 
     @Id
     @GeneratedValue
@@ -29,11 +38,14 @@ public class WebPortalUser {
     @JoinColumn(name = "WEBUSER_ROLE_ID")
     private WebPortalUserRole webPortalUserRole;
 
-    @OneToMany(mappedBy = "webPortalUserID")
+    @OneToMany(mappedBy = "webPortalUserID", fetch = FetchType.EAGER)
     Collection<Abonent> abonentsList = new ArrayList<Abonent>();
 
 
     public WebPortalUser() {
+
+        LOGGER.info("WebPortal user constructor is created");
+
     }
 
     public int getUserID() {

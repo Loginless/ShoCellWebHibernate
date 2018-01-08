@@ -1,5 +1,8 @@
 package ua.com.shocell.models;
 
+import org.apache.logging.log4j.*;
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -7,6 +10,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CONTRACT_ABONENTS")
 public class ContractAbonent extends Abonent{
+
+    private static final Logger LOGGER = LogManager.getLogger("ua.com.shoCell.models");
 
     @Column(name = "CONTRACT_ID", nullable = false, unique = true)
     private int contractID;
@@ -18,6 +23,8 @@ public class ContractAbonent extends Abonent{
     private String companyName;
 
     public ContractAbonent() {
+        LOGGER.info("ContractAbonent constructor is initiated");
+
     }
 
     public int getContractID() {

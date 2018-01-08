@@ -1,10 +1,14 @@
 package ua.com.shocell.models;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 @Table(name = "WEBPORTAL_USER_ROLES")
 public class WebPortalUserRole {
 
@@ -16,7 +20,7 @@ public class WebPortalUserRole {
     @Column(name = "ROLE_NAME", nullable = false)
     private String role_name;
 
-    @OneToMany(mappedBy = "webPortalUserRole")
+    @OneToMany(mappedBy = "webPortalUserRole", fetch = FetchType.EAGER)
     Collection<WebPortalUser> webPortalUsers = new ArrayList<WebPortalUser>();
 
     public WebPortalUserRole() {

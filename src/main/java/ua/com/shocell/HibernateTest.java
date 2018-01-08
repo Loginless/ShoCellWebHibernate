@@ -138,6 +138,5 @@ public class HibernateTest {
 
         HibernateUtil.getInstance().closeEntityManagerFactory();
 
-
     }
 }

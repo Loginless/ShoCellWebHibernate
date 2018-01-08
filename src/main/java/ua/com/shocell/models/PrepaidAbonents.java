@@ -1,5 +1,8 @@
 package ua.com.shocell.models;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -8,6 +11,9 @@ import javax.persistence.Table;
 @Table(name = "PREPAID")
 public class PrepaidAbonents extends Abonent{
 
+    private static final Logger LOGGER = LogManager.getLogger("ua.com.shoCell.models");
+
+
     @Column(name = "FIRST_NAME", nullable = false)
     private String abonentFirstName;
 
@@ -15,6 +21,8 @@ public class PrepaidAbonents extends Abonent{
     private String abonentLastName;
 
     public PrepaidAbonents() {
+        LOGGER.info("PrePaid abonent is created");
+
     }
 
     public String getAbonentFirstName() {
