@@ -10,12 +10,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
-    <!--<servlet>-->
-        <!--<servlet-name>Preved</servlet-name>-->
-        <!--<servlet-class>jII_servlet.TestServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>Preved</servlet-name>-->
-        <!--<url-pattern>/preved</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <servlet>
+        <servlet-name>xmlServlet</servlet-name>
+        <servlet-class>ua.com.shocell.view.ServletXML</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>xmlServlet</servlet-name>
+        <url-pattern>/xmlServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
